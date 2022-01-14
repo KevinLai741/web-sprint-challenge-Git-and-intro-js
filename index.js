@@ -360,12 +360,14 @@ For example artistInfo(artists, 'Frida Kahlo') will return:
 */
 
 function artistInfo(array, name){
+  const artistBio = [];
   //loop through the array to find the name and return the bio
   for(let i = 0; i < array.length ; i++){
     if(array[i].name === name){
-      return array[i].bio;
+      artistBio.push(array[i].bio);
     }
   }
+  return artistBio;
 }
 
 console.log('task 8:', artistInfo(artists, 'Frida Kahlo'));
