@@ -209,11 +209,13 @@ Practice accessing data above by console.log-ing following items:
 
 //(1) Name of the first artist (0th index) in the array
 
+//usage of array - output should be the first artist of the array - hence artists[0] and the name of that array
 console.log('task 1a:', artists[0].name);
 
 
 //(2) Bio of the third artist (2nd index) in the array 
 
+//usage of array - output should be the third artist (2) - 0,1,2 -> 3rd artist - hence artists[2] and the bio of that array
 console.log('task 1b:', artists[2].bio);
 
 
@@ -221,6 +223,7 @@ console.log('task 1b:', artists[2].bio);
 (no function needed) 
 There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Fix this issue and console.log() to check your work. */
 
+//access the array for the ninth artist and reassign its value
 artists[8].name = "Vincent Van Gogh";
 console.log('task 2:', artists[8].name);
 
@@ -233,8 +236,11 @@ Use getArtistByIndex to do the following:
 Example, if getArtistByIndex is invoked with the artists array and the number 0, it will return `the artist at index 0 is Amedeo Modigliani` */
 
 function getArtistByIndex(array, index) {
+  //loop through the array
   for(let i = 0; i < array.length; i++){
+    //conditional statement of our desired output
     if(array[i].id === index){
+      //assign id & name for desired output to return the string in format
       let id = array[i].id
       let name = array[i].name
       return `the artist at index ${id} is ${name}`
@@ -254,10 +260,17 @@ If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 // Hint - Look up the .split() method
 
 function get20s(array) {
+  //will return a new array - create a new array ("or bucket") for the first array to go through and .push results into
   const bornDeath = [];
+  //need a loop to look through the first array 
   for(let i = 0; i < array.length; i++){
+    //since we're looking for the year - array[i].years 
+    //however since there is two values in the years
+    //need to split it because of the "-"
+    //upon splitting it, we have years[0] and years[1]
     let startYears = array[i].years.split(" - ")[0]
     let endYears = array[i].years.split(" - ")[1]
+    //conditional statement to fill in our new array
     if(startYears > 1900 && endYears < 2000){
       bornDeath.push(array[i].name);
       }
@@ -279,7 +292,9 @@ For example, if removeArtist is invoked with the artists array and the number 0,
 
 
 function removeArtist(array, index) {
+  //loop through first array
   for(let i = 0; i < array.length; i++){
+    //conditional statement will want to remove the array at the index - splice
     if(array[i].id === index){
       array.splice(i,1);
     }
@@ -305,6 +320,7 @@ Use addArtist to do the following:
 Example: addArtist(artists) should return the artists array with the above object added to the end of the array. */
 
 function addArtist(array, object){
+  //adding the object of information to end of array - push
   array.push(object);
   return array;
 }
@@ -320,7 +336,9 @@ Use lotsOfArt to do the following:
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
 function lotsOfArt(array) {
+  //return a new array 
   const manyPaintings = [];
+  //loop through the first array to push the conditional statement to the new array
   for(let i = 0; i < array.length; i++){
     if(array[i].paintings > 100){
       manyPaintings.push(array[i].name)
@@ -342,6 +360,7 @@ For example artistInfo(artists, 'Frida Kahlo') will return:
 */
 
 function artistInfo(array, name){
+  //loop through the array to find the name and return the bio
   for(let i = 0; i < array.length ; i++){
     if(array[i].name === name){
       return array[i].bio;
@@ -359,14 +378,18 @@ Use artistByCountry to do the following:
 2. Receive a nationality
 3. returns a list of artists from that country
 
-For example artistByCountry(artists, 'Spanish') will return: [ 'Salvador Dali', 'Pablo Picasso', 'Francisco Goya', 'El Greco' ]
+For example artistByCountry(artists, 'Spanish') will return: [ 'Salvador Dali', 'Pablo Picasso', 'Francisco Goya' ]
 */
 
 function artistByCountry(array, nationality){
+  //create a new array
   const listofArtists = [];
+  //loop through the first array
   for(let i = 0; i < array.length; i++){
+    //need to have a string for .includes so assigned artistNationality to the array[i].nationality
+    // usage of === instead of includes() strictly nationality 
     let artistNationality = array[i].nationality;
-    if(artistNationality.includes(nationality)){
+    if(artistNationality === nationality){
       listofArtists.push(array[i].name);
     }
   }
